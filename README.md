@@ -123,6 +123,9 @@ NIL
 `reduce` `from-end` та `initial-value` ). `transform` має виконатись мінімальну кількість разів.
 ```lisp
 (defun add-next-reducer (&key (transform #'identity))
+  "For correct work you must use `reducer` with parameters:
+    -:from-end t
+    -:initial-value nil"
   (lambda (elem acc)
     (let ((next (if acc (car acc) '(nil))))
       (cons (cons (funcall transform elem) (car next)) acc))))
